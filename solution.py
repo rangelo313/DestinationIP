@@ -122,9 +122,10 @@ def get_route(hostname):
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
-                    treceived = int(timeReceived - t)*1000
-                    timerec = str(treceived)
-                    tracelist1.insert(-1, timerec + "ms")
+                    #treceived = int(timeReceived - t)*1000
+                    #timerec = str(treceived)
+                   # tracelist1.insert(-1, timerec + "ms")
+                    tracelist1.insert(-1, str(int((timeReceived - t) * 1000)) + "ms")
                     tracelist1.insert(-1, addr[0])
                     tracelist2.append(tracelist1)
                     # You should add your responses to your lists here
@@ -164,3 +165,6 @@ def get_route(hostname):
             finally:
                 mySocket.close()
         return tracelist2
+
+if __name__ == '__main__':
+    get_route("facebook.com")
