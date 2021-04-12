@@ -77,7 +77,6 @@ def get_route(hostname):
         timeto = str(ttl)
         tracelist1.append(timeto)
         for tries in range(TRIES):
-            count += 1
             destAddr = gethostbyname(hostname)
             icmp = getprotobyname("icmp")
             mySocket = socket(AF_INET, SOCK_RAW, icmp)
@@ -126,8 +125,8 @@ def get_route(hostname):
                     # Fill in start
                     treceived = int(timeReceived - t)*1000
                     timerec = str(treceived)
-                    tracelist1.insert(-1,timerec + "ms")
-                    tracelist1.insert(-1,addr[0])
+                    tracelist1.insert(-1, timerec + "ms")
+                    tracelist1.insert(-1, addr[0])
                     tracelist2.append(tracelist1)
                     # You should add your responses to your lists here
                     # Fill in end
@@ -141,7 +140,7 @@ def get_route(hostname):
                     #timerec = str(treceived)
                    # tracelist1.insert(-1,timerec + "ms")
                     tracelist1.insert(-1, str(int((timeReceived - t) * 1000)) + "ms")
-                    tracelist1.insert(-1,addr[0])
+                    tracelist1.insert(-1, addr[0])
                     tracelist2.append(tracelist1)
 
                 elif types == 0:
@@ -156,7 +155,8 @@ def get_route(hostname):
                     tracelist1.insert(-1,addr[0])
                     tracelist2.append(tracelist1)
                 else:
-                    print("error")
+                    tracelist1.insert(-1, "error")
+                    tracelist2.append(tracelist1)
                     # Fill in start
                     # If there is an exception/error to your if statements, you should append that to your list here
                     # Fill in end
@@ -164,4 +164,4 @@ def get_route(hostname):
 
             finally:
                 mySocket.close()
-            return(tracelist2)
+        return(tracelist2)
