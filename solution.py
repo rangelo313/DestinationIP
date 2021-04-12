@@ -112,9 +112,8 @@ def get_route(hostname):
                 types, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 try: #try to fetch the hostname
                     #Fill in start
-                    hos = gethostbyaddr(str(addr[0])[0])
-                    myhostt = hos
-                    tracelist1.append(myhostt)
+                    gethos = str(addr[0])
+                    tracelist1.append(gethostbyaddr(gethos))
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     tracelist1.append("hostname not returnable")
@@ -164,4 +163,7 @@ def get_route(hostname):
 
             finally:
                 mySocket.close()
-        return(tracelist2)
+        return tracelist2
+
+if __name__ == '__main__':
+    get_route("facebook.com")
